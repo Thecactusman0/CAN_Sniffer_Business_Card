@@ -105,7 +105,7 @@ void CAN_Mode_Init(uint8_t tsjw, uint8_t tbs2, uint8_t tbs1, uint16_t brp, uint8
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
     GPIO_Init(STBY_PORT, &GPIO_InitStructure);
-    GPIO_WriteBit(STBY_PORT, STBY_PIN, STBY_STATE_HIGH_SPEED); // Set STBY pin high to enable CAN transceiver
+    GPIO_WriteBit(STBY_PORT, STBY_PIN, STBY_STATE_HIGH_SPEED); 
 }
 
 
@@ -114,16 +114,16 @@ void CAN_init_freq(uint16_t kbps) //Frame mode does not restrict operation
     switch(kbps)
     {
         case 1000:
-            CAN_Mode_Init(CAN_SJW_ALL, CAN_BRP_1000, CAN_BS2_1000, CAN_BS1_1000, STANDARD_FRAME);
+            CAN_Mode_Init(CAN_SJW_ALL, CAN_BS2_1000, CAN_BS1_1000, CAN_BRP_1000, STANDARD_FRAME);
         break;
         case 500:
-
+            CAN_Mode_Init(CAN_SJW_ALL, CAN_BS2_500, CAN_BS1_500, CAN_BRP_500, STANDARD_FRAME);
         break;
         case 250:
-
+            CAN_Mode_Init(CAN_SJW_ALL, CAN_BS2_250, CAN_BS1_250, CAN_BRP_250, STANDARD_FRAME);
         break;
         case 100:
-
+            CAN_Mode_Init(CAN_SJW_ALL, CAN_BS2_100, CAN_BS1_100, CAN_BRP_100, STANDARD_FRAME);
         break;
     }
 }
@@ -173,6 +173,7 @@ uint8_t CAN_Send_Msg(uint32_t id, uint8_t *msg, uint8_t len, uint8_t frame_forma
     while((CAN_TransmitStatus(CAN1, mbox) != CAN_TxStatus_Ok) && (i < 0xFFF))
     {
         i++;
+        __asm__("nop"); // Small delay to prevent tight loop
     }
 
     if(i == 0xFFF)

@@ -138,7 +138,7 @@ void board_init(void)
     default: TU_ASSERT(0,); break;
   }
   RCC_USBCLKConfig(usb_div);
-  RCC_APB1PeriphClockCmd(RCC_APB1Periph_USB, ENABLE);  // FSDEV
+  //RCC_APB1PeriphClockCmd(RCC_APB1Periph_USB, ENABLE);  // FSDEV
   RCC_AHBPeriphClockCmd(RCC_AHBPeriph_OTG_FS, ENABLE); // USB FS
 
   __enable_irq();

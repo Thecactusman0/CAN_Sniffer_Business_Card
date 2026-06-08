@@ -21,5 +21,6 @@
 #define SET_STATUS_LED(State) GPIO_WriteBit(LED_GPIO_PORT, LED_STATUS_PIN, State)
 
 void init_leds();
+void print_clock_info(void);
 
 #endif

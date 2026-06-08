@@ -13,22 +13,37 @@
 #define STBY_STATE_HIGH_SPEED 0
 #define STBY_STATE_LISTEN_ONLY 1
 
-//BIT TIMING @ 48MHz
+//BIT TIMING @ 48MHz APB1
+/*
 #define CAN_SJW_ALL 1
 #define CAN_BRP_1000 3
 #define CAN_BS1_1000 13
 #define CAN_BS2_1000 2
-/*
-#define CAN_BRP_500
-#define CAN_BS1_500
-#define CAN_BS2_500
-#define CAN_BRP_250
-#define CAN_BS1_250
-#define CAN_BS2_250
-#define CAN_BRP_100
-#define CAN_BS1_100
-#define CAN_BS2_100
+#define CAN_BRP_500 6
+#define CAN_BS1_500 13
+#define CAN_BS2_500 2
+#define CAN_BRP_250 12
+#define CAN_BS1_250 13
+#define CAN_BS2_250 2
+#define CAN_BRP_100 30
+#define CAN_BS1_100 13 
+#define CAN_BS2_100 2
 */
+//BIT TIMING @ 24MHz APB1
+#define CAN_SJW_ALL 0
+#define CAN_BRP_1000 2
+#define CAN_BS1_1000 10
+#define CAN_BS2_1000 1
+#define CAN_BRP_500 3
+#define CAN_BS1_500 13
+#define CAN_BS2_500 2
+#define CAN_BRP_250 6
+#define CAN_BS1_250 13
+#define CAN_BS2_250 2
+#define CAN_BRP_100 15
+#define CAN_BS1_100 13 
+#define CAN_BS2_100 2
+
 void CAN_Mode_Init(uint8_t tsjw, uint8_t tbs2, uint8_t tbs1, uint16_t brp, uint8_t mode);
 void CAN_init_freq(uint16_t kbps);
 CanRxMsg CAN_Receive_Msg(void);
